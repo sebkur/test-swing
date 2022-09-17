@@ -1,10 +1,9 @@
 wrapper {
-    gradleVersion = '5.2.1'
+    gradleVersion = '7.4.2'
 }
 
 apply plugin: 'application'
 apply plugin: 'eclipse'
-apply plugin: 'maven'
 
 group = pGroup
 version = pVersion
@@ -31,7 +30,7 @@ task copyJars(type: Copy) {
 
 task copyDeps(type: Copy) {
     into "$buildDir/lib-run"
-    from configurations.runtime
+    from configurations.runtimeClasspath
 }
 
 task createRuntime(dependsOn: [copyJars, copyDeps]) {
@@ -43,6 +42,6 @@ task fatJar(type: Jar) {
         attributes 'Main-Class': 'de.topobyte.HelloSwing'
     }
     baseName = 'hello-swing'
-    from { configurations.runtime.collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
