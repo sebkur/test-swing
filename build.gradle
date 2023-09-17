@@ -1,5 +1,5 @@
 wrapper {
-    gradleVersion = '7.4.2'
+    gradleVersion = '7.6.2'
 }
 
 apply plugin: 'application'
@@ -13,7 +13,7 @@ targetCompatibility = 1.8
 
 repositories {
     maven {
-        url 'http://mvn.topobyte.de'
+        url 'https://mvn.topobyte.de'
     }
     mavenCentral()
 }
